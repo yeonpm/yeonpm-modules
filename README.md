@@ -15,7 +15,7 @@ npm install yeonpm-modules
 
 ## Usage
 
-### Formatters
+### General formatters
 
 ```typescript
 import { commas } from "yeonpm-modules";

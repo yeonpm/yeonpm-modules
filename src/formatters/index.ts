@@ -14,15 +14,19 @@ export const commas = (value: number | string) => {
 /**
  * Formats a date into YYYY-MM-DD format
  * @param date Date object or timestamp
+ * @param separator separator character between date parts (default: '-')
  * @returns formatted date string in YYYY-MM-DD format
  */
-export const dateForm = (date: Date | number): string => {
+export const dateForm = (
+  date: Date | number,
+  separator: string = "-"
+): string => {
   try {
     const d = new Date(date);
     const year = d.getFullYear();
     const month = String(d.getMonth() + 1).padStart(2, "0");
     const day = String(d.getDate()).padStart(2, "0");
-    return `${year}-${month}-${day}`;
+    return `${year}${separator}${month}${separator}${day}`;
   } catch (error) {
     return "";
   }
@@ -59,6 +63,9 @@ export const timeForm = (
  * @param date Date object or timestamp
  * @returns formatted date string in YYYY-MM-DD HH:mm format
  */
-export const dateTimeForm = (date: Date | number): string => {
-  return `${dateForm(date)} ${timeForm(date)}`;
+export const dateTimeForm = (
+  date: Date | number,
+  separator: string | undefined = undefined
+): string => {
+  return `${dateForm(date, separator)} ${timeForm(date)}`;
 };
