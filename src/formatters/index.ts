@@ -69,3 +69,61 @@ export const dateTimeForm = (
 ): string => {
   return `${dateForm(date, separator)} ${timeForm(date)}`;
 };
+
+/**
+ * Capitalizes the first letter of a string
+ * @param value input string
+ * @returns string with first letter capitalized
+ */
+export const capitalize = (value: string): string => {
+  try {
+    return value.charAt(0).toUpperCase() + value.slice(1);
+  } catch (error) {
+    return "";
+  }
+};
+
+/**
+ * Truncates a string if it exceeds the specified length
+ * @param value input string
+ * @param length maximum length before truncation
+ * @returns truncated string with ellipsis if needed
+ */
+export const truncate = (value: string, length: number): string => {
+  try {
+    return value.length > length ? value.slice(0, length) + "..." : value;
+  } catch (error) {
+    return "";
+  }
+};
+
+/**
+ * Converts a date to a relative time string (e.g., "2 hours ago")
+ * @param date Date object or timestamp
+ * @returns relative time string
+ */
+export const timeAgo = (date: Date | number): string => {
+  try {
+    const seconds = Math.floor(
+      (new Date().getTime() - new Date(date).getTime()) / 1000
+    );
+    const intervals = {
+      year: 31536000,
+      month: 2592000,
+      day: 86400,
+      hour: 3600,
+      minute: 60,
+      second: 1,
+    };
+
+    for (const [unit, secondsInUnit] of Object.entries(intervals)) {
+      const value = Math.floor(seconds / secondsInUnit);
+      if (value > 0) {
+        return `${value} ${unit}${value > 1 ? "s" : ""} ago`;
+      }
+    }
+    return "Just now";
+  } catch (error) {
+    return "";
+  }
+};
