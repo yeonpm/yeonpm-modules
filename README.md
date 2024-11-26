@@ -43,6 +43,10 @@ npm install yeonpm-modules
 
   "2024-11-20 15:30", "2024/11/20 15:30"
 
+- `stringToDate("240320")`, `stringToDate("20240320")`, `stringToDate("202403201530")`, `stringToDate("20240320153045")`
+
+  Converts date string to Date object (Supported formats: YYMMDD, YYYYMMDD, YYYYMMDDHHMM, YYYYMMDDHHMMSS)
+
 - `timeAgo(new Date(Date.now() - 3600000))`, `timeAgo(new Date(Date.now()))`
 
   "1 hour ago", "Just now"

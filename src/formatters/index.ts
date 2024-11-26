@@ -84,6 +84,68 @@ export const capitalize = (value: string): string => {
 };
 
 /**
+ * Converts a date string to a Date object
+ * @param dateStr date string (in the format YYMMDD, YYYYMMDD, YYYYMMDDHHMM, YYYYMMDDHHMMSS)
+ * @returns Date object
+ */
+export const stringToDate = (dateStr: string): Date => {
+  try {
+    const cleaned = dateStr.replace(/[^0-9]/g, "");
+    let year: string, month: string, day: string;
+    let hour = "00",
+      minute = "00",
+      second = "00";
+
+    switch (cleaned.length) {
+      case 6: // YYMMDD
+        year = "20" + cleaned.substring(0, 2);
+        month = cleaned.substring(2, 4);
+        day = cleaned.substring(4, 6);
+        break;
+      case 8: // YYYYMMDD
+        year = cleaned.substring(0, 4);
+        month = cleaned.substring(4, 6);
+        day = cleaned.substring(6, 8);
+        break;
+      case 12: // YYYYMMDDHHMM
+        year = cleaned.substring(0, 4);
+        month = cleaned.substring(4, 6);
+        day = cleaned.substring(6, 8);
+        hour = cleaned.substring(8, 10);
+        minute = cleaned.substring(10, 12);
+        break;
+      case 14: // YYYYMMDDHHMMSS
+        year = cleaned.substring(0, 4);
+        month = cleaned.substring(4, 6);
+        day = cleaned.substring(6, 8);
+        hour = cleaned.substring(8, 10);
+        minute = cleaned.substring(10, 12);
+        second = cleaned.substring(12, 14);
+        break;
+      default:
+        throw new Error("Invalid date string format");
+    }
+
+    const date = new Date(
+      parseInt(year),
+      parseInt(month) - 1, // 월은 0부터 시작
+      parseInt(day),
+      parseInt(hour),
+      parseInt(minute),
+      parseInt(second)
+    );
+
+    if (isNaN(date.getTime())) {
+      throw new Error("Invalid date");
+    }
+
+    return date;
+  } catch (error) {
+    throw new Error("Failed to parse date string");
+  }
+};
+
+/**
  * Truncates a string if it exceeds the specified length
  * @param value input string
  * @param length maximum length before truncation
