@@ -57,6 +57,12 @@ npm install yeonpm-modules
 
   "[SUCCESS] Operation completed successfully" (Colored)
 
+### Calculate
+
+- `sum(1, 2, 3, 4, 5)`
+
+  "15"
+
 ## License
 
 MIT
