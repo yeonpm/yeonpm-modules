@@ -88,7 +88,7 @@ export const capitalize = (value: string): string => {
  * @param dateStr date string (in the format YYMMDD, YYYYMMDD, YYYYMMDDHHMM, YYYYMMDDHHMMSS)
  * @returns Date object
  */
-export const stringToDate = (dateStr: string): Date => {
+export const stringToDate = (dateStr: string): Date | null => {
   try {
     const cleaned = dateStr.replace(/[^0-9]/g, "");
     let year: string, month: string, day: string;
@@ -141,7 +141,8 @@ export const stringToDate = (dateStr: string): Date => {
 
     return date;
   } catch (error) {
-    throw new Error("Failed to parse date string");
+    // throw new Error("Failed to parse date string");
+    return null;
   }
 };
 
