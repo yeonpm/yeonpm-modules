@@ -16,13 +16,26 @@
     "access": "public"
   },
   "keywords": [
+    "typescript",
+    "javascript",
     "modules",
     "utils",
     "formatters",
     "log",
     "yeonpm"
   ],
-  "author": "",
+  "author": {
+    "name": "yeonpm",
+    "email": "yeonpmdevelop@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yeonpm/yeonpm-modules.git"
+  },
+  "homepage": "https://github.com/yeonpm/yeonpm-modules",
+  "bugs": {
+    "url": "https://github.com/yeonpm/yeonpm-modules/issues"
+  },
   "license": "MIT",
   "devDependencies": {
     "@babel/core": "7.26.0",
